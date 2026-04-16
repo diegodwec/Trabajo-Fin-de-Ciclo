@@ -1,0 +1,161 @@
+.contenedor-noticias {
+    width: 90%;
+    max-width: 1200px;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.titulo-seccion {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    border-left: 5px solid #2f5c97;
+    padding-left: 15px;
+}
+
+.noticia-destacada {
+    display: flex;
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.noticia-destacada:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 0px black;
+}
+
+.noticia-destacada .imagen-noticia {
+    flex: 60%; 
+}
+
+.noticia-destacada .imagen-noticia img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 300px;
+}
+
+.noticia-destacada .contenido-noticia {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.noticia-destacada h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.grid-secundarias {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 2rem;
+}
+
+.tarjeta-noticia {
+    flex: 1 1 300px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.tarjeta-noticia:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 0px #2f5c97;
+}
+
+.imagen {
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 2px solid black;
+}
+
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tarjeta-noticia.coche .imagen img {
+    object-fit: contain; 
+}
+
+.tarjeta-noticia:hover .imagen img {
+    transform: scale(1.1);
+}
+
+.tarjeta-noticia .info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.tarjeta-noticia h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+.tarjeta-noticia a {
+    margin-top: auto;
+    text-decoration: none;
+    font-weight: bold;
+    color: #2f5c97;
+}
+
+.tarjeta-noticia a:hover {
+    text-decoration: underline;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #2f5c97;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.etiqueta.nuevo { 
+    background-color: #ff4757; 
+}
+.etiqueta.tienda { 
+    background-color: #2ed573; 
+}
+
+.leer-mas {
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: fit-content;
+    transition: background-color 0.4s;
+}
+
+.leer-mas:hover {
+    background-color: #2f5c97;
+}
+
+@media (max-width: 768px) {
+    .noticia-destacada {
+        flex-direction: column;
+        border-radius: 10px;
+    }
+}

@@ -1,0 +1,147 @@
+.guardar_datos form input {
+    display: block;
+    box-shadow: rgba(0, 0, 0, 0.19) 3px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.guardar_datos form input:focus {
+    transform: scale(1.05);
+    background-color: white;
+    border-color: #2f5c97;
+    box-shadow: 0 0 15px rgba(47, 92, 151, 0.5);
+}
+
+select {
+    display: block;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.guardar_datos {
+    grid-area: 2 / 1 / 3 / 2;
+    width: 100%;
+    padding: 150px 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+    background-image: url("../imagenes/fondo-login.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.guardar_datos form {
+    background-color: #a1e8f1;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: auto;
+    animation: aterrizaje 0.8s ease-out forwards;
+}
+
+.contenido-form {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    width: 100%;
+}
+
+@keyframes aterrizaje {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.columna-inputs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.columna-foto {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#foto {
+    display: none;
+}
+
+.btn-foto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border: 2px dashed #000;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn-foto i {
+    font-size: 4rem;
+    color: #333;
+}
+
+.btn-foto:hover {
+    border-color: #2f5c97;
+    background-color: #f0f8ff;
+}
+
+.btn-foto:hover i {
+    color: #2f5c97;
+}
+
+.btn-enviar {
+    padding: 10px 40px;
+    background-color: #2f5c97;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-enviar:hover {
+    background-color: black;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: #2f5c97;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .contenido-form {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .guardar_datos form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .btn-enviar {
+        width: 100%;
+    }
+}

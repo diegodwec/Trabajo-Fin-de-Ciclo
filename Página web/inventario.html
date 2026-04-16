@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <script src="https://kit.fontawesome.com/69898e44be.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/inventario.css">
+    <link rel="stylesheet" href="css/C&P.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" class="logo_link">
+                <img src="/img/Logo.png" alt="Logo" width="200px" height="200px">
+                <h1 class="titulo_logo">RLO</h1>
+            </a>
+            <div class="carrito">
+                <div class="iconos">
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-regular fa-envelope"></i>
+                    <i class="fa-solid fa-shopping-cart"></i>
+                </div>
+                <input type="text" name="buscar" placeholder="buscar" class="buscar">
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="inicio.html">Inicio</a>
+            <a href="inventario.html" class="activo">Inventario</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="noticias.html">Noticias</a>
+            <a href="Login.html">Cuenta</a>
+        </nav>
+    </header>
+
+
+
+    <div class="contenedor-principal">
+        
+        <div class="filtros">
+            <label class="btn-desplegable">
+                <input type="checkbox" id="trigger-filtros"> 
+                <span><i class="fa-solid fa-filter"></i> Mostrar Filtros <i class="fa-solid fa-chevron-down flecha"></i></span>
+            </label>
+
+            <div class="contenido-filtros">
+                
+                <div class="titulo-filtro escritorio-solo">
+                    <h3><i class="fa-solid fa-filter"></i> Filtrar por</h3>
+                </div>
+
+                <div class="grupo-filtro">
+                    <h4>Categoría</h4>
+                    <label><input type="checkbox"> Coches</label>
+                    <label><input type="checkbox"> Calcomanías</label>
+                    <label><input type="checkbox"> Ruedas</label>
+                    <label><input type="checkbox"> Turbos</label>
+                    <label><input type="checkbox"> Explosiones</label>
+                </div>
+
+                <div class="grupo-filtro">
+                    <h4>Rareza</h4>
+                    <label><input type="checkbox"> Común</label>
+                    <label><input type="checkbox"> Importado</label>
+                    <label><input type="checkbox"> Exótico</label>
+                    <label><input type="checkbox"> Mercado Negro</label>
+                </div>
+
+                <button class="btn-aplicar">Aplicar Filtros</button>
+            </div>
+        </div>
+
+        <div class="inventario">
+            <div class="galeria">
+                <h2>Mis Objetos</h2>
+                <div class="ordenar">
+                    <label>Ordenar por: </label>
+                    <select>
+                        <option>Más recientes</option>
+                        <option>Rareza</option>
+                        <option>Alfabético</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="items-flex">
+                <div class="item-card importado">
+                    <div class="imagen-item">
+                        <img src="imagenes/fennec.png" alt="Fennec">
+                    </div>
+                    <div class="info-item">
+                        <h3>Fennec</h3>
+                        <p class="tipo">Coche</p>
+                        <span class="rareza">Importado</span>
+                    </div>
+                </div>
+
+                <div class="item-card exotico">
+                    <div class="imagen-item">
+                        <img src="imagenes/Zomba.png" alt="Zomba">
+                    </div>
+                    <div class="info-item">
+                        <h3>Zomba</h3>
+                        <p class="tipo">Ruedas</p>
+                        <span class="rareza">Exótico</span>
+                    </div>
+                </div>
+
+                <div class="item-card mercado-negro">
+                    <div class="imagen-item">
+                        <img src="imagenes/cosmosis.png" alt="Interstellar">
+                    </div>
+                    <div class="info-item">
+                        <h3>Cosmosis</h3>
+                        <p class="tipo">Calcomanía</p>
+                        <span class="rareza">Mercado Negro</span>
+                    </div>
+                </div>
+
+                <div class="item-card comun">
+                    <div class="imagen-item">
+                        <img src="imagenes/masamune.png" alt="Octane">
+                    </div>
+                    <div class="info-item">
+                        <h3>Masamune</h3>
+                        <p class="tipo">Coche</p>
+                        <span class="rareza">Común</span>
+                    </div>
+                </div>
+
+                <div class="item-card importado">
+                    <div class="imagen-item">
+                        <img src="imagenes/dominus.png" alt="Dominus">
+                    </div>
+                    <div class="info-item">
+                        <h3>Dominus</h3>
+                        <p class="tipo">Coche</p>
+                        <span class="rareza">Importado</span>
+                    </div>
+                </div>
+
+                <div class="item-card exotico">
+                    <div class="imagen-item">
+                        <img src="imagenes/draco.png" alt="Draco">
+                    </div>
+                    <div class="info-item">
+                        <h3>Draco</h3>
+                        <p class="tipo">Ruedas</p>
+                        <span class="rareza">Exótico</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer class="footer">
+        <div class="seccion social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="seccion contacto">
+            <p class="phone">+34 612 458 734</p>
+            <p class="email">rlosupport@gmail.com</p>
+        </div>
+        <div class="chat-grupal">
+            <a href="#"><i class="fas fa-users"></i></a>
+            <a href="#"><span>Chat grupal</span></a>
+        </div>
+        <div class="stats">
+            <p class="titulo">Stats</p>
+            <a href="#"><p>1v1 skill</p></a>
+            <a href="#"><p>2v2 skill</p></a>
+            <a href="#"><p>3v3 skill</p></a>
+        </div>
+    </footer>
+</body>
+</html>

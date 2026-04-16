@@ -1,0 +1,258 @@
+.contenedor-principal {
+    width: 90%;
+    max-width: 1400px;
+    margin: 3rem auto;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start; 
+}
+
+.filtros {
+    flex: 1;
+    min-width: 250px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+}
+
+.titulo-filtro {
+    border-bottom: 2px solid #2f5c97;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    color: #2f5c97;
+}
+
+.grupo-filtro {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grupo-filtro h4 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.grupo-filtro label {
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+}
+
+.grupo-filtro label:hover {
+    color: #2f5c97;
+}
+
+.btn-aplicar {
+    width: 100%;
+    padding: 10px;
+    background-color: #2f5c97;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-aplicar:hover {
+    background-color: black;
+}
+
+.inventario {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.galeria {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.galeria h2 {
+    font-size: 1.5rem;
+}
+
+.ordenar select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.items-flex {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.item-card {
+    flex: 1 1 220px;
+    max-width: 280px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.imagen-item {
+    height: 180px;
+    background-color: #f0f0f0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+.imagen-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    transition: transform 0.3s;
+}
+
+.item-card:hover .imagen-item img {
+    transform: scale(1.1);
+}
+
+.info-item {
+    padding: 15px;
+    text-align: center;
+}
+
+.info-item h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.info-item .tipo {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.rareza {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    background-color: #999; 
+}
+
+.item-card.importado {
+    border-color: #ff4757; 
+}
+.item-card.importado .rareza { 
+    background-color: #ff4757; 
+}
+
+.item-card.exotico { 
+    border-color: #e1b12c; 
+}
+.item-card.exotico .rareza { 
+    background-color: #e1b12c; 
+    color: black;
+}
+
+.item-card.mercado-negro { 
+    border-color: #a55eea; 
+}
+.item-card.mercado-negro .rareza { 
+    background-color: #a55eea; 
+}
+
+.item-card.comun { 
+    border-color: #747d8c; 
+}
+.item-card.comun .rareza { 
+    background-color: #747d8c; 
+}
+
+#trigger-filtros {
+    display: none;
+}
+
+.btn-desplegable {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .contenedor-principal {
+        flex-direction: column;
+    }
+
+    .filtros {
+        width: 95%;
+        margin: 0 auto 20px auto;
+        padding: 0; 
+    }
+
+    .btn-desplegable {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #2f5c97;
+        color: white;
+        padding: 15px 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 10px;
+    }
+
+    .btn-desplegable input {
+        display: none;
+    }
+
+    .btn-desplegable:has(input:checked) .flecha {
+        transform: rotate(180deg);
+    }
+
+    .escritorio-solo { display: none; }
+
+    .contenido-filtros {
+        display: none;
+        padding: 20px;
+        background-color: white;
+        border-top: 1px solid #eee;
+        border-radius: 15px;
+    }
+
+    .filtros:has(input:checked) .contenido-filtros {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inventario, .galeria { 
+        width: 100%; 
+    }
+    .items-flex { 
+        justify-content: center; 
+    }
+}

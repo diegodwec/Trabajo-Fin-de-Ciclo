@@ -1,0 +1,220 @@
+.contenedor {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding-bottom: 3rem;
+}
+
+.cuadrado1 {
+    width: 80%;
+    height: 500px;
+    background-image: url('../imagenes/rocketLeague.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    margin: 15px auto;
+}
+
+.cajaTexto {
+    position: relative;
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+    animation: subir 1s ease-out;
+    background-color: rgb(0, 0, 0, 0.8);
+    border-radius: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+
+.cajaTexto h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0px #2f5c97;
+}
+
+.cajaTexto p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.btnTienda {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #2f5c97;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.btnTienda:hover {
+    background-color: white;
+    color: #2f5c97;
+    transform: scale(1.1);
+}
+
+.sobre-nosotros {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+}
+
+.caja-info {
+    flex: 1;
+    padding: 40px;
+}
+
+.caja-info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #2f5c97;
+}
+
+.caja-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.imagen-info {
+    flex: 1;
+    height: 100%;
+    min-height: 350px;
+}
+
+.imagen-info img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.accesos-rapidos {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.tarjeta {
+    flex: 1;
+    background-color: #2f5c97;
+    color: white;
+    text-decoration: none;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid black;
+    transition: all 0.3s ease;
+    box-shadow: 5px 5px 0px black;
+    overflow: hidden;
+}
+
+.tarjeta i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.tarjeta:hover i {
+    animation: aparecei 0.8s ease;
+}
+
+@keyframes aparecei {
+    0% {
+        transform: translateY(-200%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.tarjeta h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.tarjeta:hover h3 {
+    animation: apareceh3 0.8s linear;
+}
+
+@keyframes apareceh3 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.tarjeta:hover p {
+    animation: aparecep 0.8s ease;
+}
+
+@keyframes aparecep {
+    0% {
+        transform: translateY(300%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.tarjeta:hover {
+    transform: translateY(-10px);
+    background-color: white;
+    color: #2f5c97;
+    border-color: #2f5c97;
+}
+
+@keyframes subir {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-texto h1 {
+        font-size: 2.5rem;
+    }
+
+    .sobre-nosotros {
+        flex-direction: column;
+    }
+
+    .imagen-info {
+        width: 100%;
+        min-height: 250px;
+    }
+
+    .accesos-rapidos {
+        flex-direction: column;
+    }
+}
