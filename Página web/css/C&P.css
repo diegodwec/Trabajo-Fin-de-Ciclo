@@ -23,6 +23,10 @@ body {
     z-index: 100;
     width: 100%;
     grid-area: 1 / 1 / 2 / 2;
+    border-bottom: 3px solid #2f5c97;
+    background-color: white;
+    padding-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 
@@ -53,7 +57,7 @@ body {
     align-items: flex-end; 
     gap: 0.5rem;
     margin-right: 5rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .iconos{
@@ -88,12 +92,13 @@ input[name="buscar"]:focus{
     background-color: rgba(128, 128, 128, 0.3);
     border: 1px solid black;
     overflow: hidden;
-    margin: 0 auto;
+    margin: -70px auto 0 auto;
     height: 70px;
-    border-radius: 20px;
+    border-radius: 10px;
     width:55%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    transform: skewX(-25deg);
 }
 
 .menu a {
@@ -104,6 +109,12 @@ input[name="buscar"]:focus{
     align-items: center;
     justify-content: center;
     flex: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu a span {
+    transform: skewX(25deg);
+    display: inline-block; 
 }
 
 .menu a:last-child {
@@ -115,7 +126,7 @@ input[name="buscar"]:focus{
 }
 
 .menu a:not(.activo):hover{
-    background-color: blue;
+    background-color: #1a3c6b;
     color: white;
 }
 
