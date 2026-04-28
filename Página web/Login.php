@@ -1,3 +1,28 @@
+<?php
+    session_start();
+    require 'config/db.php';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $nombre = trim($_POST['Nombre']);
+        $apellidos = trim($_POST['Apellidos']);
+        $pais = $_POST['pais']; 
+        $email = trim($_POST['Email']);
+        $password = $_POST['Contraseña'];
+
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO usuarios (nombre, apellidos, pais, email, password) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+
+        try {
+            $stmt->execute([$nombre, $apellidos, $pais, $email, $passwordHash]);
+            $mensaje = "¡Usuario registrado con éxito!";
+        } catch (PDOException $e) {
+            $mensaje = "Error al registrar: " . $e->getMessage();
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +37,7 @@
     <header class="header">
         <div class="logo">
             <a href="inicio.html" class="logo_link">
-                <img src="/Página web/imagenes/Logo.png" alt="Logo" width="200px" height="200px">
+                <img src="imagenes/Logo.png" alt="Logo" width="200px" height="200px">
                 <h1 class="titulo_logo">RLO</h1>
             </a>
             <div class="carrito">
@@ -30,7 +55,7 @@
             <a href="inventario.html"><span>Inventario</span></a>
             <a href="tienda.html"><span>Tienda</span></a>
             <a href="noticias.html"><span>Noticias</span></a>
-            <a href="Login.html" class="activo"><span>Cuenta</span></a>
+            <a href="Login.php" class="activo"><span>Cuenta</span></a>
         </nav>
     </header>
 
