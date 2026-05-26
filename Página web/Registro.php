@@ -38,7 +38,7 @@
 <body>
     <header class="header">
         <div class="logo">
-            <a href="inicio.html" class="logo_link">
+            <a href="inicio.php" class="logo_link">
                 <img src="imagenes/Logo.png" alt="Logo" width="200px" height="200px">
                 <h1 class="titulo_logo">RLO</h1>
             </a>
@@ -53,10 +53,10 @@
         </div>
 
         <nav class="menu">
-            <a href="inicio.html"><span>Inicio</span></a>
-            <a href="inventario.html"><span>Inventario</span></a>
-            <a href="tienda.html"><span>Tienda</span></a>
-            <a href="noticias.html"><span>Noticias</span></a>
+            <a href="inicio.php"><span>Inicio</span></a>
+            <a href="inventario.php"><span>Inventario</span></a>
+            <a href="tienda.php"><span>Tienda</span></a>
+            <a href="noticias.php"><span>Noticias</span></a>
             <a href="Login.php" class="activo"><span>Cuenta</span></a>
         </nav>
     </header>

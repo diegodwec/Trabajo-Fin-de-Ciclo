@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <div class="logo">
-            <a href="inicio.html" class="logo_link">
+            <a href="inicio.php" class="logo_link">
                 <img src="imagenes/Logo.png" alt="Logo" width="200px" height="200px">
                 <h1 class="titulo_logo">RLO</h1>
             </a>
@@ -26,10 +26,10 @@
         </div>
 
         <nav class="menu">
-            <a href="inicio.html" class="activo"><span>Inicio</span></a>
-            <a href="inventario.html"><span>Inventario</span></a>
-            <a href="tienda.html"><span>Tienda</span></a>
-            <a href="noticias.html"><span>Noticias</span></a>
+            <a href="inicio.php" class="activo"><span>Inicio</span></a>
+            <a href="inventario.php"><span>Inventario</span></a>
+            <a href="tienda.php"><span>Tienda</span></a>
+            <a href="noticias.php"><span>Noticias</span></a>
             <a href="Login.php"><span>Cuenta</span></a>
         </nav>
     </header>
@@ -41,10 +41,19 @@
 <div class="contenedor">
         
         <div class="cuadrado1">
+            <div class="slider-contenedor" id="slider">
+                <div class="slide" style="background-image: url('imagenes/rocketLeague.webp');"></div>
+                
+                <div class="slide" style="background-image: url('imagenes/portada2.jpg');"></div>
+                
+                <div class="slide" style="background-image: url('imagenes/portada3.webp');"></div>
+                
+                <div class="slide" style="background-image: url('imagenes/rocketLeague.webp');"></div>
+            </div>
             <div class="cajaTexto">
                 <h1>ROCKET LEAGUE</h1>
                 <p>La combinación definitiva de fútbol arcade y caos vehicular.</p>
-                <a href="tienda.html" class="btnTienda">Ver Tienda <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="tienda.php" class="btnTienda">Ver Tienda <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
 
@@ -65,17 +74,17 @@
         </div>
 
         <div class="accesos-rapidos">
-            <a href="inventario.html" class="tarjeta">
+            <a href="inventario.php" class="tarjeta">
                 <i class="fa-solid fa-warehouse"></i>
                 <h3>Inventario</h3>
                 <p>Gestiona tus objetos</p>
             </a>
-            <a href="noticias.html" class="tarjeta">
+            <a href="noticias.php" class="tarjeta">
                 <i class="fa-regular fa-newspaper"></i>
                 <h3>Noticias</h3>
                 <p>Últimas novedades</p>
             </a>
-            <a href="Login.html" class="tarjeta">
+            <a href="Login.php" class="tarjeta">
                 <i class="fa-solid fa-shop"></i>
                 <h3>Cuenta</h3>
                 <p>Desea registrarse</p>
@@ -115,3 +124,35 @@
     </footer>
 </body>
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const slider = document.getElementById('slider');
+        let indiceActual = 0;
+        
+        const totalSlides = document.querySelectorAll('.slide').length; 
+
+        if(slider && totalSlides > 0) {
+            function rotarFondo() {
+                indiceActual++;
+                
+                slider.style.transition = "transform 1s ease-in-out";
+                
+                let desplazamiento = -(indiceActual * 100);
+                slider.style.transform = `translateX(${desplazamiento}%)`;
+
+                if (indiceActual === totalSlides - 1) {
+                    
+                    setTimeout(function() {
+                        slider.style.transition = "none";
+                        
+                        indiceActual = 0;
+                        slider.style.transform = "translateX(0%)";
+                    }, 1000); 
+                }
+            }
+
+            setInterval(rotarFondo, 4000);
+        }
+    });
+</script>

@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,26 +15,34 @@
 <body>
     <header class="header">
         <div class="logo">
-            <a href="inicio.html" class="logo_link">
+            <a href="inicio.php" class="logo_link">
                 <img src="imagenes/Logo.png" alt="Logo" width="200px" height="200px">
                 <h1 class="titulo_logo">RLO</h1>
             </a>
             <div class="carrito">
                 <div class="iconos">
-                    <i class="fa-regular fa-user"></i>
+                    <?php if (isset($_SESSION['usuario_id'])): ?>
+                        <a href="logout.php" style="color: inherit;"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    <?php else: ?>
+                        <a href="Login.php" style="color: inherit;"><i class="fa-regular fa-user"></i></a>
+                    <?php endif; ?>
+                    
                     <i class="fa-regular fa-envelope"></i>
-                    <i class="fa-solid fa-shopping-cart"></i>
                 </div>
                 <input type="text" name="buscar" placeholder="buscar" class="buscar">
             </div>
         </div>
 
         <nav class="menu">
-            <a href="inicio.html"><span>Inicio</span></a>
-            <a href="inventario.html"><span>Inventario</span></a>
-            <a href="tienda.html" class="activo"><span>Tienda</span></a>
-            <a href="noticias.html"><span>Noticias</span></a>
-            <a href="Login.php"><span>Cuenta</span></a>
+            <a href="inicio.php"><span>Inicio</span></a>
+            <a href="inventario.php"><span>Inventario</span></a>
+            <a href="tienda.php" class="activo"><span>Tienda</span></a>
+            <a href="noticias.php"><span>Noticias</span></a>
+            <?php if (isset($_SESSION['usuario_id'])): ?>
+                <a href="logout.php"><span>Cerrar Sesión</span></a>
+            <?php else: ?>
+                <a href="Login.php"><span>Cuenta</span></a>
+            <?php endif; ?>
         </nav>
     </header>
 
@@ -172,3 +184,116 @@
     </footer>
 </body>
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // --- 1. PROTECCIÓN DE SESIÓN (Lee de PHP) ---
+        const usuarioLogueado = <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
+
+        // Si no está logueado, protegemos los botones
+        function verificarAcceso() {
+            if (!usuarioLogueado) {
+                alert("Debes iniciar sesión para usar el carrito.");
+                window.location.href = 'Login.php';
+                return false;
+            }
+            return true;
+        }
+
+        // --- 2. LÓGICA DEL CARRITO ---
+        const carrito = [];
+        const btnCarritoWrapper = document.getElementById('icono-carrito-wrapper');
+        const panelCarrito = document.getElementById('panel-carrito');
+        const listaCarrito = document.getElementById('lista-carrito');
+        const contadorCarrito = document.getElementById('contador-carrito');
+        const totalPrecio = document.getElementById('total-precio');
+
+        // Evento abrir carrito
+        btnCarritoWrapper.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (!verificarAcceso()) return; // Protegemos la apertura
+
+            panelCarrito.style.display = (panelCarrito.style.display === 'flex') ? 'none' : 'flex';
+        });
+
+        panelCarrito.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+
+        document.addEventListener('click', () => {
+            panelCarrito.style.display = 'none';
+        });
+
+        const botonesCompra = document.querySelectorAll('.btn-comprar, .btn-mini');
+
+        botonesCompra.forEach(boton => {
+            boton.addEventListener('click', function(e) {
+                const card = this.closest('.card-destacada, .card-diaria');
+                
+                let nombre, precioStr, imgSrc;
+
+                if (card.classList.contains('card-destacada')) {
+                    nombre = card.querySelector('.nombre-item').textContent;
+                    precioStr = card.querySelector('.precio').textContent;
+                    imgSrc = card.querySelector('.imagen-destacada img').src;
+                } else {
+                    nombre = card.querySelector('h4').textContent;
+                    precioStr = card.querySelector('.precio').textContent;
+                    imgSrc = card.querySelector('.img-diaria img').src;
+                }
+
+                const precio = parseInt(precioStr.replace(/\D/g, ''));
+
+                const item = { 
+                    id: Date.now(),
+                    nombre: nombre, 
+                    precio: precio, 
+                    imgSrc: imgSrc 
+                };
+
+                carrito.push(item);
+                actualizarCarrito();
+                
+                panelCarrito.style.display = 'flex';
+            });
+        });
+
+        function actualizarCarrito() {
+            listaCarrito.innerHTML = '';
+            let total = 0;
+
+            if (carrito.length === 0) {
+                listaCarrito.innerHTML = '<p style="text-align: center; color: #777;">El carrito está vacío</p>';
+            } else {
+                carrito.forEach((item, index) => {
+                    total += item.precio;
+                    
+                    const div = document.createElement('div');
+                    div.classList.add('item-en-carrito');
+                    div.innerHTML = `
+                        <img src="${item.imgSrc}" alt="${item.nombre}">
+                        <div class="item-en-carrito-info">
+                            <p>${item.nombre}</p>
+                            <span>${item.precio} cr</span>
+                        </div>
+                        <button class="btn-eliminar" data-index="${index}"><i class="fa-solid fa-trash"></i></button>
+                    `;
+                    listaCarrito.appendChild(div);
+                });
+            }
+
+            contadorCarrito.textContent = carrito.length;
+            totalPrecio.textContent = total + ' cr';
+
+            const botonesEliminar = document.querySelectorAll('.btn-eliminar');
+            botonesEliminar.forEach(boton => {
+                boton.addEventListener('click', function(e) {
+                    const index = this.getAttribute('data-index');
+                    carrito.splice(index, 1);
+                    actualizarCarrito();
+                });
+            });
+        }
+    });
+</script>
