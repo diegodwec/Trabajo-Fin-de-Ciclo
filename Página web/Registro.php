@@ -48,7 +48,6 @@
                     <i class="fa-regular fa-envelope"></i>
                     <i class="fa-solid fa-shopping-cart"></i>
                 </div>
-                <input type="text"  name="buscar" placeholder="buscar" class="buscar">
             </div>
         </div>
 

@@ -51,19 +51,22 @@ body {
     font-size: 2rem;
 }
 
-.carrito{
+.carrito {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; 
-    gap: 0.5rem;
-    margin-right: 5rem;
-    margin-top: 1.5rem;
+    align-items: flex-end;
+    justify-content: flex-end; 
+    gap: 5px;
+    margin-right: 2rem;
+    margin-top: 1rem;  
+    width: auto;        
 }
 
-.iconos{
+.iconos {
     display: flex;
-    gap: 1rem; 
+    gap: 20px; 
     font-size: 1.5rem;
+    align-items: center;
 }
 
 .iconos i{
@@ -74,18 +77,24 @@ body {
     transform: scale(1.3);
 }
 
-.buscar{
-    width: 200px;
-    padding: 0.4rem;
-    border-radius: 10px;
-}
-
-input[name="buscar"]:focus{
-    background-color: rgb(226, 223, 223);
-}
-
 .carrito i{
     margin: 1rem;
+}
+
+.display-creditos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    color: #2f5c97;
+    margin-top: 5px;
+    font-size: 1.25rem;
+    cursor: default;
+    transition: transform 0.3s ease;
+}
+
+.display-creditos:hover {
+    transform: scale(1.1);
 }
 
 .menu {
@@ -214,11 +223,6 @@ input[name="buscar"]:focus{
         margin-top: 10px;
         align-items: center;
         width: 100%;
-    }
-
-    .buscar {
-        width: 100%;
-        max-width: 300px; 
     }
 
     .menu {

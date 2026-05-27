@@ -1,3 +1,15 @@
+<?php
+    session_start();
+    require_once 'config/db.php';
+    $creditos = 0;
+    if (isset($_SESSION['usuario_id'])) {
+        $stmt = $pdo->prepare("SELECT creditos FROM usuarios WHERE id = ?");
+        $stmt->execute([$_SESSION['usuario_id']]);
+        $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+        $creditos = $user_data['creditos'] ?? 0;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +29,35 @@
             </a>
             <div class="carrito">
                 <div class="iconos">
-                    <i class="fa-regular fa-user"></i>
+                    <?php if (isset($_SESSION['usuario_id'])): ?>
+                        <a href="logout.php" style="color: inherit;" title="Cerrar Sesión"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    <?php else: ?>
+                        <a href="Login.php" style="color: inherit;" title="Iniciar Sesión"><i class="fa-regular fa-user"></i></a>
+                    <?php endif; ?>
+                    
                     <i class="fa-regular fa-envelope"></i>
-                    <i class="fa-solid fa-shopping-cart"></i>
+                    
+                    <div id="icono-carrito-wrapper" style="position: relative; display: inline-block; cursor: pointer;">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                        <span id="contador-carrito" class="badge-carrito">0</span>
+                        
+                        <div id="panel-carrito" class="panel-carrito">
+                            <h3 style="cursor: default;">Tu Carrito</h3>
+                            <div id="lista-carrito" style="cursor: default;">
+                                <p style="text-align: center; color: #777;">El carrito está vacío</p>
+                            </div>
+                            <div class="total-carrito" style="cursor: default;">
+                                <strong>Total: </strong> <span id="total-precio">0 cr</span>
+                            </div>
+                            <button id="btn-pagar" style="width: 100%; padding: 10px; background-color: #2ed573; color: black; font-weight: bold; border: 2px solid black; border-radius: 5px; cursor: pointer; margin-top: 10px;">Finalizar Compra</button>
+                        </div>
+                    </div>
                 </div>
-                <input type="text"  name="buscar" placeholder="buscar" class="buscar">
+                <?php if (isset($_SESSION['usuario_id'])): ?>
+                    <div class="display-creditos">
+                        <i class="fa-solid fa-coins"></i> <?php echo number_format($creditos); ?> cr
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -30,7 +66,11 @@
             <a href="inventario.php"><span>Inventario</span></a>
             <a href="tienda.php"><span>Tienda</span></a>
             <a href="noticias.php"><span>Noticias</span></a>
-            <a href="Login.php"><span>Cuenta</span></a>
+            <?php if (isset($_SESSION['usuario_id'])): ?>
+                <a href="logout.php"><span>Cerrar Sesión</span></a>
+            <?php else: ?>
+                <a href="Login.php"><span>Cuenta</span></a>
+            <?php endif; ?>
         </nav>
     </header>
 
@@ -92,10 +132,25 @@
         </div>
     </div>
 
+    <div id="modal-mensaje" class="modal-login" style="display: none;">
+        <div class="modal-login-contenido" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <span class="cerrar-modal-mensaje" style="align-self: flex-end; cursor: pointer; font-size: 1.5rem;">&times;</span>
+            <i id="icono-mensaje" class="fa-solid fa-circle-check" style="font-size: 3rem;"></i>
+            <h3 id="titulo-mensaje" style="margin: 0;">Título</h3>
+            <p id="texto-mensaje" style="margin-bottom: 15px;">Texto del mensaje</p>
+            <button id="btn-cerrar-mensaje" style="padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;">Aceptar</button>
+        </div>
+    </div>
 
-
-
-
+<div id="modal-login" class="modal-login" style="display: none;">
+        <div class="modal-login-contenido">
+            <span class="cerrar-modal">&times;</span>
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <h3>¡Atención!</h3>
+            <p>Debes iniciar sesión o registrarte para finalizar tu compra.</p>
+            <a href="Login.php" class="btn-ir-login">Iniciar Sesión</a>
+        </div>
+    </div>
 
     <footer class="footer">
 
@@ -126,33 +181,6 @@
 </html>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const slider = document.getElementById('slider');
-        let indiceActual = 0;
-        
-        const totalSlides = document.querySelectorAll('.slide').length; 
-
-        if(slider && totalSlides > 0) {
-            function rotarFondo() {
-                indiceActual++;
-                
-                slider.style.transition = "transform 1s ease-in-out";
-                
-                let desplazamiento = -(indiceActual * 100);
-                slider.style.transform = `translateX(${desplazamiento}%)`;
-
-                if (indiceActual === totalSlides - 1) {
-                    
-                    setTimeout(function() {
-                        slider.style.transition = "none";
-                        
-                        indiceActual = 0;
-                        slider.style.transform = "translateX(0%)";
-                    }, 1000); 
-                }
-            }
-
-            setInterval(rotarFondo, 4000);
-        }
-    });
+    const usuarioLogueado = <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
 </script>
+<script src="js/app.js"></script>

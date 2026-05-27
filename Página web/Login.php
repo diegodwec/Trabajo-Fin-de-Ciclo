@@ -44,11 +44,30 @@
             </a>
             <div class="carrito">
                 <div class="iconos">
-                    <i class="fa-regular fa-user"></i>
+                    <?php if (isset($_SESSION['usuario_id'])): ?>
+                        <a href="logout.php" style="color: inherit;" title="Cerrar Sesión"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    <?php else: ?>
+                        <a href="Login.php" style="color: inherit;" title="Iniciar Sesión"><i class="fa-regular fa-user"></i></a>
+                    <?php endif; ?>
+                    
                     <i class="fa-regular fa-envelope"></i>
-                    <i class="fa-solid fa-shopping-cart"></i>
+                    
+                    <div id="icono-carrito-wrapper" style="position: relative; display: inline-block; cursor: pointer;">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                        <span id="contador-carrito" class="badge-carrito">0</span>
+                        
+                        <div id="panel-carrito" class="panel-carrito">
+                            <h3 style="cursor: default;">Tu Carrito</h3>
+                            <div id="lista-carrito" style="cursor: default;">
+                                <p style="text-align: center; color: #777;">El carrito está vacío</p>
+                            </div>
+                            <div class="total-carrito" style="cursor: default;">
+                                <strong>Total: </strong> <span id="total-precio">0 cr</span>
+                            </div>
+                            <button id="btn-pagar" style="width: 100%; padding: 10px; background-color: #2ed573; color: black; font-weight: bold; border: 2px solid black; border-radius: 5px; cursor: pointer; margin-top: 10px;">Finalizar Compra</button>
+                        </div>
+                    </div>
                 </div>
-                <input type="text" name="buscar" placeholder="buscar" class="buscar">
             </div>
         </div>
 
@@ -89,6 +108,16 @@
         </form> 
     </div>
 
+    <div id="modal-login" class="modal-login" style="display: none;">
+        <div class="modal-login-contenido">
+            <span class="cerrar-modal">&times;</span>
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <h3>¡Atención!</h3>
+            <p>Debes iniciar sesión o registrarte para finalizar tu compra.</p>
+            <a href="Login.php" class="btn-ir-login">Iniciar Sesión</a>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="seccion social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -112,3 +141,9 @@
     </footer>
 </body>
 </html>
+
+
+<script>
+    const usuarioLogueado = <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
+</script>
+<script src="js/app.js"></script>
