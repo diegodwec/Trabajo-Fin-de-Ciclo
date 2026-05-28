@@ -2,9 +2,16 @@
     session_start();
     require 'config/db.php';
 
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+
     $mensaje = ""; 
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die("Error de seguridad CSRF. Petición no válida.");
+        }
         $email = trim($_POST['email']);
         $password = $_POST['password'];
 
@@ -82,7 +89,8 @@
 
     <div class="guardar_datos">
         <form method="POST" action="Login.php">
-            
+
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <?php if ($mensaje != ""): ?>
                 <p style="color: white; font-weight: bold; background: #e74c3c; padding: 10px; border-radius: 10px; width: 100%; text-align: center; margin-bottom: 20px;">
                     <?php echo $mensaje; ?>

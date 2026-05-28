@@ -2,9 +2,16 @@
     session_start();
     require 'config/db.php';
 
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+
     $mensaje = ""; 
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die("Error de seguridad CSRF. Petición no válida.");
+        }
         $nombre = trim($_POST['nombre']);
         $apellidos = trim($_POST['apellidos']);
         $pais = $_POST['pais']; 
@@ -64,6 +71,7 @@
         
         <form method="POST" action="Registro.php" enctype="multipart/form-data">
             
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <?php if ($mensaje != ""): ?>
                 <p style="color: black; font-weight: bold; background: #2ed573; padding: 10px; border-radius: 10px; width: 100%; text-align: center; margin-bottom: 20px;">
                     <?php echo $mensaje; ?>
